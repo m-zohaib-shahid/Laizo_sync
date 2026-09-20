@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView, type Transition } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { motion, type Transition } from "framer-motion";
+import { ArrowRight, Sparkles, ShieldCheck, Zap, Award, Star } from "lucide-react";
 
 const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 
@@ -10,13 +9,13 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: {
     opacity: 1,
     y: 0,
@@ -32,84 +31,64 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[92vh] pt-32 pb-20 flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Animated gradient mesh background */}
-      <div className="absolute inset-0 -z-10">
-        {/* Base dark */}
-        <div className="absolute inset-0 bg-[#0A0A0B]" />
+      {/* Background radial glowing ambient lights */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-gradient-to-tr from-[#10B981]/20 via-[#06B6D4]/15 to-transparent blur-[140px]" />
+        <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-emerald-500/10 blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] rounded-full bg-cyan-500/10 blur-[130px]" />
 
-        {/* Subtle grid overlay */}
+        {/* Fine grid pattern overlay */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: `linear-gradient(#F5F5F7 1px, transparent 1px), linear-gradient(90deg, #F5F5F7 1px, transparent 1px)`,
-            backgroundSize: "72px 72px",
-          }}
-        />
-
-        {/* Gradient glow blobs */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#10B981]/10 blur-[120px] animate-pulse" />
-        <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-violet-500/8 blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
-        <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] rounded-full bg-blue-500/8 blur-[100px] animate-pulse" style={{ animationDelay: "2s" }} />
-
-        {/* Grain texture */}
-        <div
-          className="absolute inset-0 opacity-[0.025] mix-blend-overlay"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-            backgroundRepeat: "repeat",
-            backgroundSize: "256px 256px",
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
 
-      {/* Content */}
+      {/* Main Content */}
       <motion.div
-        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-16"
+        className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Badge */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#10B981]/30 bg-[#10B981]/10 px-4 py-1.5 text-xs font-semibold text-[#10B981] uppercase tracking-wider">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
-            </span>
-            Available for new projects
-          </span>
+        {/* Status Badge */}
+        <motion.div variants={itemVariants} className="mb-8 inline-block">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-400 backdrop-blur-md shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+            <Sparkles size={14} className="text-emerald-400" />
+            <span className="uppercase tracking-wider">Digital Agency for High-Growth Brands</span>
+          </div>
         </motion.div>
 
-        {/* Main headline */}
+        {/* Main Display Headline */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#F5F5F7] leading-[1.05] mb-6"
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-6"
         >
-          We Build the Digital
+          We Build Digital Products &amp;
           <br />
-          <span className="bg-gradient-to-r from-[#10B981] via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-            Infrastructure
+          <span className="bg-gradient-to-r from-[#10B981] via-[#06B6D4] to-[#3B82F6] bg-clip-text text-transparent">
+            Growth Engines
           </span>{" "}
-          <br className="hidden sm:block" />
-          That Scales.
+          That Scale Revenue.
         </motion.h1>
 
-        {/* Subheadline */}
+        {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="max-w-2xl mx-auto text-lg sm:text-xl text-[#A1A1AA] leading-relaxed mb-10"
+          className="max-w-2xl mx-auto text-base sm:text-xl text-slate-300 font-normal leading-relaxed mb-10"
         >
-          Laizo Sync is a digital agency for founders who are done with agencies
-          that deliver decks but not results. We build Shopify stores, run paid
-          ads, and ship modern web & mobile products — fast.
+          Engineering Shopify stores, high-ROAS Meta &amp; Google Ads campaigns, Next.js web applications, and mobile products built for founders who demand measurable ROI.
         </motion.p>
 
-        {/* CTAs */}
+        {/* Action Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <a
             href="#contact"
@@ -117,9 +96,9 @@ export function Hero() {
               e.preventDefault();
               document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="group relative inline-flex items-center gap-2 rounded-full bg-[#10B981] px-7 py-3.5 text-base font-semibold text-white shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_50px_rgba(16,185,129,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
+            className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#10B981] to-[#06B6D4] px-8 py-4 text-sm font-bold text-white shadow-[0_0_35px_rgba(16,185,129,0.4)] hover:shadow-[0_0_50px_rgba(16,185,129,0.7)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
           >
-            Start a Project
+            Start Your Project
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
           </a>
           <a
@@ -128,47 +107,43 @@ export function Hero() {
               e.preventDefault();
               document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#27272A] bg-[#121214] px-7 py-3.5 text-base font-semibold text-[#F5F5F7] hover:border-[#10B981]/50 hover:bg-[#10B981]/5 transition-all duration-300"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.05] backdrop-blur-xl px-8 py-4 text-sm font-bold text-slate-200 hover:text-white hover:bg-white/10 hover:border-white/30 transition-all duration-300"
           >
-            See Our Work
+            Explore Case Studies
           </a>
         </motion.div>
 
-        {/* Stats row */}
+        {/* Glassmorphic Stats Grid */}
         <motion.div
           variants={itemVariants}
-          className="mt-16 flex flex-wrap items-center justify-center gap-8 sm:gap-12"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto p-4 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl"
         >
           {[
-            { value: "4.8×", label: "Average ROAS" },
-            { value: "2 wks", label: "MVP Delivery" },
-            { value: "90+", label: "Lighthouse Score" },
-            { value: "0", label: "Missed Deadlines" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-[#F5F5F7]">
-                {stat.value}
+            { value: "$45M+", label: "Client Revenue Generated", icon: Award },
+            { value: "2 Weeks", label: "Average Delivery Time", icon: Zap },
+            { value: "99+", label: "Lighthouse Speed Score", icon: ShieldCheck },
+            { value: "4.9 / 5", label: "Client Partner Rating", icon: Star },
+          ].map((stat, i) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={i}
+                className="flex flex-col items-center p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-emerald-500/30 transition-colors"
+              >
+                <div className="flex items-center gap-1.5 text-[#10B981] mb-1">
+                  <Icon size={16} />
+                  <span className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    {stat.value}
+                  </span>
+                </div>
+                <span className="text-xs text-slate-400 font-medium text-center">
+                  {stat.label}
+                </span>
               </div>
-              <div className="text-xs text-[#A1A1AA] mt-1 uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </motion.div>
       </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-        onClick={handleScroll}
-        aria-label="Scroll to services"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#A1A1AA] hover:text-[#10B981] transition-colors cursor-pointer group"
-      >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
-        <ChevronDown size={18} className="animate-bounce" />
-      </motion.button>
     </section>
   );
 }

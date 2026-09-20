@@ -34,19 +34,18 @@ function GitHubIcon({ size = 16 }: { size?: number }) {
 
 export function Footer() {
   return (
-    <footer className="bg-[#0A0A0B] border-t border-[#27272A]">
+    <footer className="bg-[#07080C] border-t border-white/10 text-slate-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
-              <span className="font-bold text-2xl tracking-tight text-[#F5F5F7]">
+              <span className="font-extrabold text-2xl tracking-tight text-white">
                 Laizo<span className="text-[#10B981]">Sync</span>
               </span>
             </Link>
-            <p className="text-[#A1A1AA] text-sm leading-relaxed max-w-sm mb-6">
-              A digital agency for founders who want results. We build Shopify
-              stores, run paid ads, and ship modern web & mobile products — fast.
+            <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+              A digital agency for founders who demand measurable ROI. We build Shopify stores, execute high-ROAS ad campaigns, and ship modern web &amp; mobile products.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -54,25 +53,25 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="h-9 w-9 rounded-lg border border-[#27272A] bg-[#121214] flex items-center justify-center text-[#A1A1AA] hover:text-[#10B981] hover:border-[#10B981]/30 transition-all duration-200"
+                className="h-10 w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500/40 transition-all"
               >
-                <LinkedInIcon size={16} />
+                <LinkedInIcon size={18} />
               </a>
               <a
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="h-9 w-9 rounded-lg border border-[#27272A] bg-[#121214] flex items-center justify-center text-[#A1A1AA] hover:text-[#10B981] hover:border-[#10B981]/30 transition-all duration-200"
+                className="h-10 w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500/40 transition-all"
               >
-                <GitHubIcon size={16} />
+                <GitHubIcon size={18} />
               </a>
             </div>
           </div>
 
           {/* Navigation */}
           <div>
-            <h3 className="text-sm font-semibold text-[#F5F5F7] uppercase tracking-wider mb-4">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-4">
               Navigation
             </h3>
             <ul className="space-y-3">
@@ -80,7 +79,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-[#A1A1AA] hover:text-[#10B981] transition-colors duration-200"
+                    className="text-sm text-slate-400 hover:text-emerald-400 transition-colors"
                   >
                     {link.label}
                   </a>
@@ -89,27 +88,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Direct Contact */}
           <div>
-            <h3 className="text-sm font-semibold text-[#F5F5F7] uppercase tracking-wider mb-4">
-              Contact
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-4">
+              Contact Us
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="mailto:hello@laizosync.com"
-                  className="flex items-center gap-2 text-sm text-[#A1A1AA] hover:text-[#10B981] transition-colors duration-200"
+                  className="flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
                 >
-                  <Mail size={14} />
+                  <Mail size={15} className="text-emerald-400" />
                   hello@laizosync.com
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+15550000000"
-                  className="flex items-center gap-2 text-sm text-[#A1A1AA] hover:text-[#10B981] transition-colors duration-200"
+                  className="flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
                 >
-                  <Phone size={14} />
+                  <Phone size={15} className="text-emerald-400" />
                   +1 (555) 000-0000
                 </a>
               </li>
@@ -117,21 +116,21 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#27272A]">
-          <p className="text-xs text-[#A1A1AA]/60">
-            © {currentYear} LaizoSync. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5">
+          <p className="text-xs text-slate-500">
+            &copy; {currentYear} LaizoSync Digital Agency. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link
               href="/privacy"
-              className="text-xs text-[#A1A1AA]/60 hover:text-[#A1A1AA] transition-colors"
+              className="text-xs text-slate-500 hover:text-slate-300 transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms"
-              className="text-xs text-[#A1A1AA]/60 hover:text-[#A1A1AA] transition-colors"
+              className="text-xs text-slate-500 hover:text-slate-300 transition-colors"
             >
               Terms of Service
             </Link>

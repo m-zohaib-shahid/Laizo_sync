@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, useAnimationFrame, useMotionValue, type Transition } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/constants";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 
@@ -13,27 +13,31 @@ function TestimonialCard({
   testimonial: (typeof TESTIMONIALS)[0];
 }) {
   return (
-    <div className="relative flex-shrink-0 w-[320px] sm:w-[380px] rounded-2xl border border-[#27272A] bg-[#121214] p-6 mx-3">
-      <Quote size={24} className="text-[#10B981]/50 mb-4" />
-      <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6">
+    <div className="relative flex-shrink-0 w-[320px] sm:w-[400px] rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-7 mx-3 hover:border-emerald-500/40 hover:bg-white/[0.06] transition-all duration-300">
+      {/* 5-Star Rating */}
+      <div className="flex items-center gap-1 text-amber-400 mb-4">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} size={14} fill="currentColor" />
+        ))}
+      </div>
+
+      <Quote size={20} className="text-emerald-400/50 mb-3" />
+      <p className="text-slate-200 text-sm leading-relaxed mb-6 font-normal">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
-      <div className="flex items-center gap-3">
-        <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[#10B981]/40 to-teal-500/40 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] text-xs font-bold">
-          {testimonial.avatar}
+      
+      <div className="flex items-center gap-3.5 border-t border-white/5 pt-4">
+        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#10B981] to-[#06B6D4] p-0.5 shadow-md">
+          <div className="h-full w-full rounded-full bg-[#07080C] flex items-center justify-center text-emerald-400 text-xs font-extrabold">
+            {testimonial.avatar}
+          </div>
         </div>
         <div>
-          <div className="text-sm font-semibold text-[#F5F5F7]">
+          <div className="text-sm font-bold text-white">
             {testimonial.author}
           </div>
-          <div className="text-xs text-[#A1A1AA]">{testimonial.role}</div>
+          <div className="text-xs font-medium text-slate-400">{testimonial.role}</div>
         </div>
-      </div>
-      {/* Placeholder indicator */}
-      <div className="absolute top-4 right-4">
-        <span className="text-[10px] text-[#A1A1AA]/40 uppercase tracking-wider">
-          Testimonial
-        </span>
       </div>
     </div>
   );
@@ -85,28 +89,27 @@ export function Testimonials() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="testimonials" ref={ref} className="py-24 sm:py-32 bg-[#121214] overflow-hidden">
+    <section id="testimonials" ref={ref} className="py-24 sm:py-32 bg-[#07080C] overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 sm:mb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease } as Transition}
+          className="text-center max-w-3xl mx-auto"
         >
-          <p className="text-xs text-[#10B981] uppercase tracking-[0.2em] mb-4 font-semibold">
-            Social Proof
-          </p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F5F5F7] max-w-xl leading-tight">
-            What founders
-            <br />
-            <span className="text-[#A1A1AA]">are saying.</span>
+          <span className="inline-block text-xs font-bold text-[#10B981] uppercase tracking-[0.25em] mb-3 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10">
+            Client Success
+          </span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            What Founders <span className="bg-gradient-to-r from-[#10B981] to-[#06B6D4] bg-clip-text text-transparent">Are Saying.</span>
           </h2>
         </motion.div>
       </div>
 
-      <div className="relative space-y-4">
+      <div className="relative space-y-6">
         {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 bg-gradient-to-r from-[#121214] to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10 bg-gradient-to-l from-[#121214] to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 bg-gradient-to-r from-[#07080C] to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10 bg-gradient-to-l from-[#07080C] to-transparent pointer-events-none" />
 
         <MarqueeRow testimonials={TESTIMONIALS} direction={1} speed={0.35} />
         <MarqueeRow testimonials={TESTIMONIALS} direction={-1} speed={0.3} />

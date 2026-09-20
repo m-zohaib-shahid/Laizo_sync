@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -34,76 +34,84 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease }}
-        className={cn(
-          "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-          scrolled
-            ? "bg-[#0A0A0B]/80 backdrop-blur-xl border-b border-[#27272A]"
-            : "bg-transparent"
-        )}
+        className="fixed top-4 inset-x-0 z-50 px-4 pointer-events-none"
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="group flex items-center gap-2">
-            <span className="font-bold text-xl tracking-tight text-[#F5F5F7] group-hover:text-[#10B981] transition-colors duration-200">
-              Laizo
-              <span className="text-[#10B981]">Sync</span>
-            </span>
-          </Link>
-
-          {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-sm text-[#A1A1AA] hover:text-[#F5F5F7] transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#10B981] hover:after:w-full after:transition-all after:duration-300"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
-              className="relative inline-flex items-center gap-2 rounded-full bg-[#10B981] px-5 py-2 text-sm font-semibold text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              Book a Call
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            aria-label="Toggle mobile menu"
-            className="md:hidden p-2 text-[#A1A1AA] hover:text-[#F5F5F7]"
-            onClick={() => setMobileOpen(!mobileOpen)}
+        <div className="max-w-5xl mx-auto pointer-events-auto">
+          <nav
+            className={cn(
+              "rounded-full px-5 py-3 transition-all duration-300 flex items-center justify-between",
+              scrolled
+                ? "bg-[#07090E]/90 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
+                : "bg-[#07090E]/60 backdrop-blur-md border border-white/[0.08]"
+            )}
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </nav>
+            {/* Logo */}
+            <Link href="/" className="group flex items-center gap-2.5">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#10B981] shadow-[0_0_8px_#10B981]" />
+              </span>
+              <span className="font-extrabold text-lg tracking-tight text-white group-hover:text-[#10B981] transition-colors duration-200">
+                Laizo<span className="text-[#10B981]">Sync</span>
+              </span>
+            </Link>
+
+            {/* Desktop Nav */}
+            <ul className="hidden md:flex items-center gap-8">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200 relative py-1 hover:text-[#10B981]"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            {/* Right Actions */}
+            <div className="hidden md:flex items-center gap-3">
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, "#contact")}
+                className="group relative inline-flex items-center gap-1.5 rounded-full bg-[#10B981] px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.7)] transition-all duration-300 hover:scale-105 active:scale-95"
+              >
+                <span>Book a Call</span>
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </a>
+            </div>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              aria-label="Toggle mobile menu"
+              className="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </nav>
+        </div>
       </motion.header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Nav Drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 inset-x-0 z-40 bg-[#0A0A0B]/95 backdrop-blur-xl border-b border-[#27272A] md:hidden"
+            className="fixed top-20 inset-x-4 z-40 max-w-md mx-auto rounded-3xl bg-[#0B0F17]/95 backdrop-blur-2xl border border-white/10 p-6 shadow-2xl md:hidden"
           >
-            <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-[#A1A1AA] hover:text-[#F5F5F7] text-lg py-2 border-b border-[#27272A] transition-colors"
+                  className="text-slate-200 hover:text-[#10B981] font-semibold text-lg py-2.5 border-b border-white/5 transition-colors"
                 >
                   {link.label}
                 </a>
@@ -111,9 +119,10 @@ export function Navbar() {
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, "#contact")}
-                className="mt-2 inline-flex justify-center items-center rounded-full bg-[#10B981] px-5 py-3 text-sm font-semibold text-white"
+                className="mt-2 inline-flex justify-center items-center gap-2 rounded-2xl bg-[#10B981] px-6 py-3.5 text-sm font-bold text-white shadow-lg"
               >
-                Book a Call
+                Book a Free Discovery Call
+                <ArrowUpRight size={16} />
               </a>
             </div>
           </motion.div>
