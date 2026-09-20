@@ -12,7 +12,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "#0A0A0B",
+          background: "#07080C",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -32,38 +32,44 @@ export default async function Image() {
             transform: "translate(-50%, -50%)",
             width: "600px",
             height: "400px",
-            background: "radial-gradient(ellipse, rgba(16,185,129,0.15) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse, rgba(16,185,129,0.2) 0%, transparent 70%)",
             borderRadius: "50%",
+            display: "flex",
           }}
         />
 
         {/* Logo */}
         <div
           style={{
-            fontSize: "56px",
+            fontSize: "64px",
             fontWeight: "800",
-            color: "#F5F5F7",
+            color: "#FFFFFF",
             letterSpacing: "-2px",
             marginBottom: "24px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
           }}
         >
-          Laizo<span style={{ color: "#10B981" }}>Sync</span>
+          <span>Laizo</span>
+          <span style={{ color: "#10B981" }}>Sync</span>
         </div>
 
         {/* Tagline */}
         <div
           style={{
-            fontSize: "28px",
-            color: "#A1A1AA",
+            fontSize: "26px",
+            color: "#CBD5E1",
             textAlign: "center",
             maxWidth: "800px",
             lineHeight: 1.4,
+            display: "flex",
           }}
         >
-          Shopify · Meta Ads · Google Ads · Next.js · Mobile Apps
+          Shopify Store Development · Paid Performance Ads · Next.js · Mobile Apps
         </div>
 
-        {/* Border bottom */}
+        {/* Footer brand */}
         <div
           style={{
             position: "absolute",
@@ -73,6 +79,7 @@ export default async function Image() {
             fontWeight: "600",
             letterSpacing: "4px",
             textTransform: "uppercase",
+            display: "flex",
           }}
         >
           laizosync.com
