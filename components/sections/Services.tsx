@@ -1,11 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { motion, useInView, type Transition } from "framer-motion";
 import { SERVICES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
+
+const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 
 const containerVariants = {
   hidden: {},
@@ -19,7 +20,7 @@ const cardVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease } as Transition,
   },
 };
 
@@ -34,7 +35,7 @@ export function Services() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease } as Transition}
           className="mb-16 sm:mb-20"
         >
           <p className="text-xs text-[#10B981] uppercase tracking-[0.2em] mb-4 font-semibold">
@@ -60,7 +61,7 @@ export function Services() {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#27272A]"
         >
-          {SERVICES.map((service, i) => {
+          {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <motion.div

@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Transition } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+
+const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,7 +33,7 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease }}
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300",
           scrolled

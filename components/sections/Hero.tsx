@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { useRef } from "react";
+import { motion, useInView, type Transition } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
+
+const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 
 const containerVariants = {
   hidden: {},
@@ -18,7 +20,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.7, ease } as Transition,
   },
 };
 
